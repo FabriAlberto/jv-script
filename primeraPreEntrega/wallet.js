@@ -7,6 +7,7 @@ const Usuarios = [
         contraseña: 42856838,
     },
 ];
+const tarjetas = [];
 
 class NuevoUsuario {
 
@@ -14,6 +15,17 @@ class NuevoUsuario {
         this.nombre = nombre,
             this.apellido = apellido,
             this.correo = correo,
+            this.contraseña = contraseña
+    }
+
+}
+class NuevaTarjeta {
+    constructor(nombre, apellido, banco, numDeTarj, expiracion, contraseña) {
+        this.nombre = nombre,
+            this.apellido = apellido,
+            this.banco = banco,
+            this.numDeTarj = numDeTarj,
+            this.expiracion = expiracion,
             this.contraseña = contraseña
     }
 }
@@ -105,7 +117,8 @@ function mostrarMenu2(nombre) {
                  1-Extraccion \n
                  2-Transferencia\n
                  3-Deposito\n
-                4-Salir`));
+                 4-Agregar tarjeta\n
+                5-Salir`));
 
                 if (!isNaN(opcion)) {
 
@@ -122,6 +135,13 @@ function mostrarMenu2(nombre) {
                         saldo = depositar(saldo);
                     }
                     else if (opcion == 4) {
+
+                       let tarjeta= agregarTarjeta();
+                       tarjetas.push(tarjeta);
+                       console.log(tarjetas);
+                       alert(`se agrego una tarjeta exitoasamente`)
+                    }
+                    else if (opcion == 5) {
                         document.write(`Gracias por usar nuestro servicio de cajero automatico:) \n`);
                         break;
                     }
@@ -171,10 +191,21 @@ function depositar(saldo) {
         alert(`su operacion ha sido exitosa ha depositado $ ${deposito}, a ${destino}`)
         return saldo - deposito;
     }
-    else{
+    else {
         alert(`su operacion ha sido exitosa , ha depositado ${deposito} a su cuenta`)
-        return saldo+deposito;
+        return saldo + deposito;
     }
+
+}
+function agregarTarjeta() {
+    nombre = prompt("Hola ingresa el nombre del titular")
+    apellido = prompt(" ingresa el apellido del titular")
+    banco = prompt(" ingresa el banco de la tarjeta")
+    numero = prompt(" ingresa el numero de la tarjeta")
+    expiracion = prompt(" ingresa la fecha de expiracion")
+    contraseña = prompt(" ingresa la contraseña");
+
+    return new NuevaTarjeta(apellido,nombre,banco,numero,expiracion,contraseña)
 
 }
 mostrarMenu();
