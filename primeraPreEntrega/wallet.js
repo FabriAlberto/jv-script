@@ -1,24 +1,7 @@
-const Usuarios = [
-    {
-        ///usuario de prueba
-        nombre: "Fabricio",
-        apellido: "alberto",
-        correo: "fabriciohugoalberto16@gmail.com",
-        contraseña: 42856838,
-    },
-];
+
 const tarjetas = [];
 
-class NuevoUsuario {
 
-    constructor(nombre, apellido, correo, contraseña) {
-        this.nombre = nombre,
-            this.apellido = apellido,
-            this.correo = correo,
-            this.contraseña = contraseña
-    }
-
-}
 class NuevaTarjeta {
     constructor(nombre, apellido, banco, numDeTarj, expiracion, contraseña) {
         this.nombre = nombre,
@@ -30,52 +13,12 @@ class NuevaTarjeta {
     }
 }
 
-function registrar() {
-
-    let nombre = prompt("Nombre:");
-    let apellido = prompt("apellido:");
-    let correo = prompt("correo:");
-    let contraseña = prompt("contraseña:");
-
-    return new NuevoUsuario(nombre, apellido, correo, contraseña);
-
-}
-
-
-function iniciarSesion() {
-
-    let correo = prompt(`**INICIAR SESION**
-                    Ingrese su correo`);
-    let contraseña = prompt("Ingrese su contraseña");
-
-    let cuentaIngresada = Usuarios.some((cuenta) => cuenta.correo == correo && cuenta.contraseña == contraseña)
-    console.log(cuentaIngresada);
-
-
-
-    if (cuentaIngresada) {
-
-        let nombreRegistrado = Usuarios.find((cuenta) => cuenta.correo == correo && cuenta.contraseña == contraseña)
-        console.log(nombreRegistrado.nombre);
-        /* USO FIND PARA QUE ME DEVUELVA EL OBJETO 
-     EN CASO DE QUE COINCIDA EL CORREO Y CONTRASEÑA, PARA PODER RECORRER
-     LAS PROPIEDADES DE ESTE, POR EJEMPLO PARA SACAR EL NOMBRE */
-        let nombre = nombreRegistrado.nombre
-        console.log(nombre);
-        mostrarMenu2(nombre)
-    }
-    else {
-        alert("los datos ingresados no son validos")
-    }
-
-
-}
-
+let saldo=15000;
 
 
 
 // Mostrar menu principal//
-function mostrarMenu() {
+/* function mostrarMenu() {
     let op = "";
     while (op !== "C") {
         op = prompt(`HOLA BIENVENIDO AL BANCO FA
@@ -98,11 +41,28 @@ function mostrarMenu() {
             alert("OPCION INCORRECTA");
         }
     }
-}
+} */
 
 //mostrar menu de opciones del cajero
 
-function mostrarMenu2(nombre) {
+let Btntransf=document.querySelector("#transferencia")
+Btntransf.addEventListener('click', transferir);
+
+
+let Btndeposito=document.querySelector("#deposito")
+Btndeposito.addEventListener('click', depositar);
+
+let Btnorden=document.querySelector("#orden")
+Btnorden.addEventListener('click', extraer)
+
+let Btntarjetas=document.querySelector("#tarjetas")
+//aun no definido
+let BtnnuevaTarjeta=document.querySelector("#nuevaTarjeta")
+BtnnuevaTarjeta.addEventListener('click', agregarTarjeta)
+
+
+
+/* function mostrarMenu2(nombre) {
     let saldo = parseInt(prompt(`Hola ${nombre}  ingresa tu saldo actual`));
     respuesta = "";
     if (!isNaN(saldo)) {
@@ -156,9 +116,9 @@ function mostrarMenu2(nombre) {
         }
     }
 
-};
+}; */
 
-function extraer(saldo) {
+function extraer() {
     let extraer = parseInt(prompt("Ingrese el monto que desea extraer"));
 
     if (extraer > saldo) {
@@ -166,11 +126,13 @@ function extraer(saldo) {
     }
     else if ((extraer > 0) && (extraer <= saldo)) {
         alert("su opreacion fue exitosa");
-        document.write(` ha extraido $ ${extraer} <br>`);
-        return saldo - extraer;
+        /* document.write(` ha extraido $ ${extraer} <br>`); */
+        console.log(`ha extraido ${extraer}`)
     }
+        return saldo - extraer;
+        
 }
-function transferir(saldo) {
+function transferir(/* saldo */) {
     let transferir = parseInt(prompt("Ingrese el monto que desea transferir"));
 
     if (transferir > saldo) {
@@ -179,21 +141,30 @@ function transferir(saldo) {
     else if ((transferir > 0) && (transferir <= saldo)) {
         let destino = prompt("Ingrese el CBU o Alias al que desea transferir dinero");
         alert("su operacion fue exitosa")
-        document.write(` ha transferido $${transferir}, a ${destino} <br>`);
+        /* document.write(` ha transferido $${transferir}, a ${destino} <br>`); */
+        console.log(`ha transferido${transferir}`)
         return saldo - transferir;
+        
     }
+
+    
 }
-function depositar(saldo) {
+function depositar() {
 
     let deposito = parseInt(prompt("Ingrese el dinero que vaya a depositar"));
     let destino = prompt("Ingrese el CBU o Alias al que desea depositarle dinero o si desea depositarlo en su cuenta escriba MI CUENTA");
     if (destino !== "MI CUENTA") {
         alert(`su operacion ha sido exitosa ha depositado $ ${deposito}, a ${destino}`)
+        console.log(`ha depositado   ${deposito}`)
         return saldo - deposito;
     }
     else {
         alert(`su operacion ha sido exitosa , ha depositado ${deposito} a su cuenta`)
+        
+        console.log(`se ha depositado   ${deposito}`)
         return saldo + deposito;
+        
+
     }
 
 }
@@ -204,8 +175,11 @@ function agregarTarjeta() {
     numero = prompt(" ingresa el numero de la tarjeta")
     expiracion = prompt(" ingresa la fecha de expiracion")
     contraseña = prompt(" ingresa la contraseña");
-
+    console.log(`a agregado una nueva tarjeta a nombre de ${nombre} ${apellido}`)
     return new NuevaTarjeta(apellido,nombre,banco,numero,expiracion,contraseña)
 
+   
+
 }
-mostrarMenu();
+/* mostrarMenu();
+ */
