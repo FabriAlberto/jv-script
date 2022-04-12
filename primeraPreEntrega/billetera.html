@@ -1,40 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billetera Virtual</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Billetera Virtual</title>
 </head>
+
 <body>
-<header>
+  <header class="header">
+    <nav class="header__nav">
+      <ul class="header__nav__ul">
+        <li><a href="billetera.html"><img class="header__nav__ul__img" src="elparaiso.png"
+              alt="logotipo-marca-wallet-billeteravirtual"></a></li>
+        <li class="header__nav__ul__li">Hi, Nombre </li>
+        <li class="header__nav__ul__li">
+          <button class="header__nav__ul__li__btn" id="btnCerrarSesion">Cerrar Sesion</button>
+          <a href="#"><img class="header__nav__ul__img2" src="pngwing.com.png"></a>
+        </li>
 
-</header>
-    <h1>Wallet El paraiso</h1>
-<main>
-  <article class="sueldo">
-    <p class="sueldo__p">
-        
-    </p>
+      </ul>
+    </nav>
 
-    
-  </article>
-
-  <section class="menu"> 
-
-    <button id="transferencia">TRANSFERENCIA</button>
-    <button id="deposito">DEPOSITO </button>
-    <button id="orden">ORDEN DE EXTRACCION</button>
-    <button id="tarjetas">MIS TARJETAS</button>
-    <button id="nuevaTarjeta"> + Nueva Tarjeta</button>
-
-  </section>
-</main>
+  </header>
 
 
-    
+  <!-- mainn -->
+  <main class="main">
+
+    <section class="menu1">
+      <button id="tarjetas">MIS TARJETAS</button>
+      <button id="nuevaTarjeta"> + Nueva Tarjeta</button>
+    </section>
+    <section class="sueldo">
+      <article class="sueldo__article">
+
+        <p class="sueldo__article__p">
+          $5000
+        </p>
+      </article>
+
+      <article class="menu">
+
+        <button id="transferencia">TRANSFERENCIA</button>
+        <button id="deposito">DEPOSITO </button>
+        <button id="orden">ORDEN DE EXTRACCION</button>
+
+      </article>
+
+    </section>
+
+    <section class="actividad">
+      <p>ACTIVIDAD</p>
+    </section>
 
 
-    <script src="wallet.js"></script>
+  </main>
+
+
+
+
+
+  <script src="wallet.js"> </script>
+  <script src="InicioRegistro.js"> </script>
 </body>
+
 </html>

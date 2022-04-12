@@ -183,3 +183,18 @@ function agregarTarjeta() {
 }
 /* mostrarMenu();
  */
+
+
+
+
+
+
+
+
+
+///evento para cerrar sesion///
+let btnCerrarsesion = document.querySelector("#btnCerrarSesion");
+btnCerrarsesion.addEventListener('click',()=> {
+    alert("Gracias por usar nuestros servicios ;)")
+window.location.replace("http://127.0.0.1:5500/index.html")});
+
