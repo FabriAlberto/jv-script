@@ -11,7 +11,7 @@ main{
     height:100vh;
     display: flex;
     flex-direction: row;
-    background-image: url(/sea-gc5aa15178_1920.jpg);
+    background-image: url(../imagenes/sea-gc5aa15178_1920.jpg);
     
 }
 .cont{
@@ -20,7 +20,7 @@ main{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around
 }
 .Reg{
     position: absolute;

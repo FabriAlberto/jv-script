@@ -88,7 +88,7 @@ function iniciarSesion() {
          EN CASO DE QUE COINCIDA EL CORREO Y CONTRASEÑA, PARA PODER RECORRER
          LAS PROPIEDADES DE ESTE, POR EJEMPLO PARA SACAR EL NOMBRE */
             let nombre = nombreRegistrado.nombre
-            window.location.replace("http://127.0.0.1:5500/billetera.html");
+            window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
             console.log(nombre);
             mostrarMenu2(nombre);
         }
