@@ -8,6 +8,8 @@ body {
     background-color: #101010;
 }
 
+/* /////////////////HEADERR////////////////////////// */
+
 .header {
     background-color: #1e1e1e;
 
@@ -71,23 +73,37 @@ a {
     text-decoration: none;
 }
 
-.menu{
-    display: flex;
-    flex-direction: column; 
-}
-.menu button{
-    width: 100px;
-    }
-.menu1{
-    display: flex;
-    flex-direction: column; 
-}
-.menu1 button{
-    width: 100px;
-    }
 
+/* general///////////////// */
+.main__billetera{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.general{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.main{
+}
+.accionesgral{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.saldo{
+    width: 80%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+   
+
+}
+.main__billetera{
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -95,9 +111,140 @@ a {
 
 }
 
-.sueldo__article__p{
+.saldo__article__p{
     color: #7A63FF;
 }
+.saldo__contenedor{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #1e1e1ea8;
+    height: 50%;
+    width: 50%;
+    border-radius: 10px;
+}
+.saldo__contenedor__p{
+    color: #26ca5c;
+}
+.menuAcciones{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+   
+  
+
+
+
+}
+.menu__botones{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 10px;
+    border: none;
+    background-color:#6851ec;
+    border: 2px solid rgb(167, 166, 166);
+    font-size: 2em;
+    display:flex ;
+    justify-content: center;
+    align-items: center;
+}
+.menu__botones:hover{
+    background-color: #593eec;
+    border: none ;
+    background-color: #e9e9e9;
+    color:#6851ec;
+    border:2px solid #6851ec;
+}
+/* Menu1////////////////////////////// */
+.menu1{
+    width:10%;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+    
+}
+.menu1 button{
+    
+    width: 100px;
+
+    }
+    /* menu acciones///////////////// */
+.menuAcciones__aciones {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.menuAcciones__aciones ul{
+    margin: 50px 0px 50px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 450px;
+    width: 80%;
+    background-color: #1a1a1a;  
+      position: absolute;
+    top: -70px;
+    border-radius:20px ;
+
+
+}
+
+.menuAcciones__aciones ul label{
+ font-size: 1.8rem;
+ color: #26ca5c;
+
+}
+.btn__cerrar{
+    position: absolute;
+    top:0;
+}
+.menuAcciones__aciones__input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    border-bottom: 1px solid #7A63FF;
+    height: 80px;
+    width:400px;
+    font-size: 1.6rem;
+}
+.menuAcciones__aciones__input::placeholder{
+    color: rgba(255, 255, 255, 0.397);
+    padding-left: 10px;
+    font-size: 1.6rem;
+}
+
+
+
+
+
+/* //////////////ACTIVIDADES///////////////// */
+.aside__actividades{
+    width:30% ;
+    min-height:calc(100vh - 80px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+   background-color: #1e1e1e;
+}
 .actividad P{
+    margin-top: 20px;
     color: #7A63FF;
 }

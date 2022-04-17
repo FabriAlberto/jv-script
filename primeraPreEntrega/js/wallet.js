@@ -13,161 +13,169 @@ class NuevaTarjeta {
     }
 }
 
-let saldo=15000;
 
 
-
-// Mostrar menu principal//
-/* function mostrarMenu() {
-    let op = "";
-    while (op !== "C") {
-        op = prompt(`HOLA BIENVENIDO AL BANCO FA
-       A-Iniciar sesion:)
-       B-Registrarme!
-       C-Salir`);
-
-        if (op === "A") {
-            iniciarSesion();
-        }
-        else if (op === "B") {
-            let registro = registrar();
-            Usuarios.push(registro);
-            console.log(Usuarios);
-        }
-        else if (op === "C") {
-            alert("Gracias por elegirnos ");
-        }
-        else {
-            alert("OPCION INCORRECTA");
-        }
-    }
-} */
 
 //mostrar menu de opciones del cajero
-
-let Btntransf=document.querySelector("#transferencia")
+/* mostrar form para transferir dinero */
+let Btntransf = document.querySelector("#transferencia")
 Btntransf.addEventListener('click', transferir);
 
 
-let Btndeposito=document.querySelector("#deposito")
+let Btndeposito = document.querySelector("#deposito")
 Btndeposito.addEventListener('click', depositar);
 
-let Btnorden=document.querySelector("#orden")
+let Btnorden = document.querySelector("#orden")
 Btnorden.addEventListener('click', extraer)
 
-let Btntarjetas=document.querySelector("#tarjetas")
+
+let Btntarjetas = document.querySelector("#tarjetas")
 //aun no definido
-let BtnnuevaTarjeta=document.querySelector("#nuevaTarjeta")
+
+
+let BtnnuevaTarjeta = document.querySelector("#nuevaTarjeta")
 BtnnuevaTarjeta.addEventListener('click', agregarTarjeta)
 
 
 
-/* function mostrarMenu2(nombre) {
-    let saldo = parseInt(prompt(`Hola ${nombre}  ingresa tu saldo actual`));
-    respuesta = "";
-    if (!isNaN(saldo)) {
 
-        while (respuesta !== "no") {
-            if (saldo >= 1) {
-                let opcion = parseInt(prompt(`
-                  ******MENU****** \n
-                 Hola ${nombre}
-                 SU SALDO ES $ ${saldo}
-                ¡Ingrese la opcion con un numero!\n
-                 1-Extraccion \n
-                 2-Transferencia\n
-                 3-Deposito\n
-                 4-Agregar tarjeta\n
-                5-Salir`));
 
-                if (!isNaN(opcion)) {
+/* transferir, evento que se realiza al hacer click al btn#trasnferencia */
+function transferir() {
 
-                    if (opcion == 1) {
 
-                        saldo = extraer(saldo);
-                    }
-                    else if (opcion == 2) {
+    let acciones = document.querySelector("#acciones");
+    let transferTabla = document.createElement("ul")
+    transferTabla.innerHTML = `
+                               
+                              <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
+                              <li > <label for="transf">AR$</label> <input class="menuAcciones__aciones__input" id="transf" type="text" placeholder="Dinero a transferir$$$"></li>
+                              <li><input class="menuAcciones__aciones__input" id="transfCbu" type="text" placeholder="ingrese CBU o alias "></li>
+                              <button id="submitTransf" >TRANSFERIR</button>  
+                              `
 
-                        saldo = transferir(saldo);
-                    }
-                    else if (opcion == 3) {
+    acciones.append(transferTabla);
 
-                        saldo = depositar(saldo);
-                    }
-                    else if (opcion == 4) {
+    /* boton que realiza el envio de informacion */
+    let btnTransf = document.querySelector("#submitTransf");
+    btnTransf.addEventListener("click",enviartransferencia);
+    /* boton que cierra */
+    cerrarVentana("#cerrar", acciones)
 
-                       let tarjeta= agregarTarjeta();
-                       tarjetas.push(tarjeta);
-                       console.log(tarjetas);
-                       alert(`se agrego una tarjeta exitoasamente`)
-                    }
-                    else if (opcion == 5) {
-                        document.write(`Gracias por usar nuestro servicio de cajero automatico:) \n`);
-                        break;
-                    }
-                }
-            }
-            else {
-                alert(`no tiene saldo para realizar alguna accion`);
-                break;
-            }
-            var respuesta = prompt("desea realizar otra operacion si o no?");
-
-        }
-    }
-
-}; */
-
-function extraer() {
-    let extraer = parseInt(prompt("Ingrese el monto que desea extraer"));
-
-    if (extraer > saldo) {
-        alert("su saldo es insuficiente para realizar esta operacion");
-    }
-    else if ((extraer > 0) && (extraer <= saldo)) {
-        alert("su opreacion fue exitosa");
-        /* document.write(` ha extraido $ ${extraer} <br>`); */
-        console.log(`ha extraido ${extraer}`)
-    }
-        return saldo - extraer;
-        
 }
-function transferir(/* saldo */) {
-    let transferir = parseInt(prompt("Ingrese el monto que desea transferir"));
 
-    if (transferir > saldo) {
+
+
+/* funcion para evaluar los datos ingresados */
+function enviartransferencia() {
+    const dinero = document.querySelector("#transf").value;
+    const cbu = document.querySelector("#transfCbu").value;
+    if (!dinero || !cbu) {
+        alert("complete todos los campos porfavor")
+    }
+    else if (dinero > saldo) {
         alert("su saldo es insuficiente para realizar esta operacion");
     }
-    else if ((transferir > 0) && (transferir <= saldo)) {
-        let destino = prompt("Ingrese el CBU o Alias al que desea transferir dinero");
+    else if ((dinero > 0) && (dinero <= saldo)) {
         alert("su operacion fue exitosa")
-        /* document.write(` ha transferido $${transferir}, a ${destino} <br>`); */
-        console.log(`ha transferido${transferir}`)
-        return saldo - transferir;
-        
+
+
+        console.log(`se transfirio ${dinero} a ${cbu}`)
+        saldo = saldo - dinero;
+        acciones.innerHTML = "";
+        mostrarSaldo(saldo);
+
     }
 
-    
+
 }
+/* FIN TRANSFERENCIA */
+
+
+
+/* Depositar, evento que se realiza al hacer click al btn#deposito */
 function depositar() {
 
-    let deposito = parseInt(prompt("Ingrese el dinero que vaya a depositar"));
-    let destino = prompt("Ingrese el CBU o Alias al que desea depositarle dinero o si desea depositarlo en su cuenta escriba MI CUENTA");
-    if (destino !== "MI CUENTA") {
-        alert(`su operacion ha sido exitosa ha depositado $ ${deposito}, a ${destino}`)
-        console.log(`ha depositado   ${deposito}`)
-        return saldo - deposito;
-    }
-    else {
-        alert(`su operacion ha sido exitosa , ha depositado ${deposito} a su cuenta`)
-        
-        console.log(`se ha depositado   ${deposito}`)
-        return saldo + deposito;
-        
+  
 
-    }
+    const acciones = document.querySelector("#acciones");
+    const  depoTabla = document.createElement("ul")
+    depoTabla.innerHTML = `
+                               
+                              <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
+                              <li > <label for="depo">AR$</label> <input class="menuAcciones__aciones__input" id="depo" type="text" placeholder="Dinero para depositar$$$"></li>
+
+                              <button id="submitDepo">Agregar a tu cuenta</button>
+                               
+                              `
+
+    acciones.append(depoTabla);
+    cerrarVentana("#cerrar", acciones)
+    const btndepositar= document.querySelector("#submitDepo");
+    btndepositar.addEventListener("click", agregarDeposito);
 
 }
+function agregarDeposito(){
+const dineroDeposito= document.querySelector("#depo").value;
+
+
+let mensaje=!dineroDeposito?"Ingrese el dinero que desea agregar a su cuenta": mostrarDeposito(dineroDeposito);
+
+              alert(mensaje);
+}
+function mostrarDeposito(d){
+    saldo=saldo+ d ;
+    mostrarSaldo(saldo);
+    acciones.innerHTML = "";
+    return msj=`se ha agregado ${d} a su cuenta `;
+ 
+}
+/* FIN DEPOSITO */
+
+
+
+
+function extraer() {
+    
+    const acciones = document.querySelector("#acciones");
+    const  extraTabla = document.createElement("ul")
+    extraTabla.innerHTML = `
+                              <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
+                              <li > <label for="extra">AR$</labeel> <input class="menuAcciones__aciones__input" id="extra" type="text" placeholder="Dinero a extraer$$$"></li>
+                              <li> <input class="menuAcciones__aciones__input" id="dniExtra" type="text" placeholder="D.N.I"> </li>
+                              <button id="submitExtra"> Generar Orden </button> </div>
+                               
+                              `
+
+    acciones.append(extraTabla);
+    cerrarVentana("#cerrar", acciones)
+    const btnExtraer= document.querySelector("#submitExtra");
+    btnExtraer.addEventListener("click", generarOrden);
+
+}
+
+function generarOrden(){
+  const dineroExtraer = document.querySelector("#extra").value;
+  const dniExtraer = document.querySelector("#dniExtra").value;
+
+  if(!dineroExtraer || !dniExtraer){
+      alert("complete todos los datos porfavor")
+  }
+  else if( dniExtraer.length!==8){
+      alert("ingrese correctamente su dni")
+  }
+  else if (dineroExtraer>saldo){
+      alert("el monto que desea extraer es superior a su saldo")
+  }
+  else if (dineroExtraer>0 ){
+     alert("su orden de extraccion fue generada")
+     acciones.innerHTML = "";
+  }
+}
+
+
+
+
 function agregarTarjeta() {
     nombre = prompt("Hola ingresa el nombre del titular")
     apellido = prompt(" ingresa el apellido del titular")
@@ -176,25 +184,22 @@ function agregarTarjeta() {
     expiracion = prompt(" ingresa la fecha de expiracion")
     contraseña = prompt(" ingresa la contraseña");
     console.log(`a agregado una nueva tarjeta a nombre de ${nombre} ${apellido}`)
-    return new NuevaTarjeta(apellido,nombre,banco,numero,expiracion,contraseña)
+    return new NuevaTarjeta(apellido, nombre, banco, numero, expiracion, contraseña)
 
-   
+
 
 }
-/* mostrarMenu();
- */
+
+
+
+/* funcion para cerrar ventana en caso de que quiera salir */
+function cerrarVentana(c, e) {
+    let btnCerrar = document.querySelector(c);
+    btnCerrar.addEventListener("click", () => { e.innerHTML = ""; })
+}
 
 
 
 
 
-
-
-
-
-///evento para cerrar sesion///
-let btnCerrarsesion = document.querySelector("#btnCerrarSesion");
-btnCerrarsesion.addEventListener('click',()=> {
-    alert("Gracias por usar nuestros servicios ;)")
-window.location.replace("http://127.0.0.1:5500/index.html")});
 

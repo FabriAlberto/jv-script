@@ -12,7 +12,7 @@ main{
     display: flex;
     flex-direction: row;
     background-image: url(../imagenes/sea-gc5aa15178_1920.jpg);
-    
+  
 }
 .cont{
     width: 100%;

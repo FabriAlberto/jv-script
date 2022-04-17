@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a11a1742be.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../css/style.css">
   <title>Billetera Virtual</title>
 </head>
@@ -15,7 +16,7 @@
       <ul class="header__nav__ul">
         <li><a href="billetera.html"><img class="header__nav__ul__img" src="../imagenes/elparaiso.png"
               alt="logotipo-marca-wallet-billeteravirtual"></a></li>
-        <li class="header__nav__ul__li">Hi, Nombre </li>
+        <li id="nombreSaludo" class="header__nav__ul__li">  </li>
         <li class="header__nav__ul__li">
           <button class="header__nav__ul__li__btn" id="btnCerrarSesion">Cerrar Sesion</button>
           <a href="#"><img class="header__nav__ul__img2" src="../imagenes/pngwing.com.png"></a>
@@ -28,34 +29,51 @@
 
 
   <!-- mainn -->
-  <main class="main">
-
-    <section class="menu1">
+  <main class="main__billetera">
+    <div class="menu1">
       <button id="tarjetas">MIS TARJETAS</button>
       <button id="nuevaTarjeta"> + Nueva Tarjeta</button>
-    </section>
-    <section class="sueldo">
-      <article class="sueldo__article">
+    </div>
 
-        <p class="sueldo__article__p">
-          $5000
-        </p>
-      </article>
+    <div class="general">
+      <section class="saldo">
+        <div class="saldo__contenedor">
 
-      <article class="menu">
+        
+        <p class="saldo__contenedor__p"> AR$</p>
+        <article id="saldo" class="saldo__article">
+           <!-- SALDO///////////// -->
+        </article>
+       </div>
 
-        <button id="transferencia">TRANSFERENCIA</button>
-        <button id="deposito">DEPOSITO </button>
-        <button id="orden">ORDEN DE EXTRACCION</button>
+      </section>
 
-      </article>
+      <section class="menuAcciones">
+         
+        <article class="menu">
 
-    </section>
+          <button class="menu__botones" id="transferencia"><i class="fas fa-paper-plane"></i></button>
+          <button class="menu__botones" id="deposito"><i class="fas fa-plus"></i></button>
+          <button class="menu__botones" id="orden"><i class="fas fa-copy"></i>  </button>
 
-    <section class="actividad">
-      <p>ACTIVIDAD</p>
-    </section>
+          
+        </article>
+        <section class="menuAcciones__aciones" id="acciones">
+          <!-- trasnferencias,extracciones,etc -->
+        </section>
 
+      </section>
+    </div>
+
+    </div>
+    <div class="aside__actividades">
+      <section class="actividad">
+        <p id="actividades">ACTIVIDAD</p>
+        <article>
+          <!-- actividades -->
+        </article>
+      </section>
+    </div>
 
   </main>
 
@@ -63,8 +81,15 @@
 
 
 
+
+
+
+  <script src="../js/inicial.js"></script>
   <script src="../js/wallet.js"> </script>
-  <script src="../js/InicioRegistro.js"> </script>
+
+
+
+  <!-- <script src="../js/InicioRegistro.js"> </script> -->
 </body>
 
 </html>
