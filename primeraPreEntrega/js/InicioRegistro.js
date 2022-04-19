@@ -1,3 +1,11 @@
+
+/* esta condicion me sirve para saber si hay un usuario ingresado o no-
+ya que si hay alguno no me deja ingresar al login hasta que cierre sesion */
+
+if(localStorage.getItem("UsuarioIngresado")){
+    window.location.replace("http://127.0.0.1:5500/paginas/billetera.html")
+}
+
 const Usuarios = [
     { nombre: "Fabricio",apellido: "alberto",correo: "fabriciohugoalberto16@gmail.com",contraseña: 42856838,saldo:15000},
     { nombre: "luis",    apellido: "alberto",correo: "luis@gmail.com",contraseña: 42856838,saldo:15000},
@@ -17,8 +25,19 @@ class NuevoUsuario {
     }
 
 }
+class UsuarioIngresado{
+    constructor(nombre,apellido,saldo){
+    this.nombre=nombre,
+    this.apellido=apellido,
+    this.saldo=saldo
+    }
+}
 
 
+function recuperar(){
+    const recuperado=JSON.parse(localStorage.getItem("Usuarios")) || console.log('no hay datos')
+    Usuarios.push(recuperado)
+}
 
 ///////////////REGISTAR USUARIO NUEVO////////////////////////////////////////////
 
@@ -28,11 +47,12 @@ btnRegistro.addEventListener('click', AgregarUsuario);
 
 function AgregarUsuario(){
 
-    let recuperado=JSON.parse(localStorage.getItem("Usuarios", Usuarios));
+    let NuevoUsuario = registrar()
 
-    recuperado.push(registrar())
+    recuperar( )
    
-    localStorage.setItem("Usuarios",JSON.stringify(recuperado));
+    localStorage.setItem("Usuarios",JSON.stringify(NuevoUsuario));
+
     alert("usuario registrado")
     login.classList.remove( 'active')
     regist.classList.remove( 'active')
@@ -95,10 +115,11 @@ function iniciarSesion() {
         if (cuentaIngresada) {
             let nombreRegistrado=recuperado.find((cuenta) => cuenta.correo == correo && cuenta.contraseña == contraseña)
             console.log(nombreRegistrado.nombre);
-            let nombre = nombreRegistrado.nombre
+            let ingresoUsuario= new UsuarioIngresado(nombreRegistrado.nombre,nombreRegistrado.apellido,nombreRegistrado.saldo)
+            localStorage.setItem("UsuarioIngresado", JSON.stringify(ingresoUsuario));
             window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
             console.log(nombre);
-          
+             
         }
         else {
             alert("los datos ingresados no son validos")    
@@ -118,3 +139,5 @@ function validarIngreso(correo, contraseña) {
         return true
     }
 }
+
+

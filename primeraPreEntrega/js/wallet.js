@@ -1,4 +1,13 @@
 
+
+/* esta condicion me sirve para saber si hay un usuario ingresado o no-
+ya que si no hay ninguno me linkea al login y si aun no han cerrado sesion
+seguiria en el wallet */
+
+if(!localStorage.getItem("UsuarioIngresado")){
+    window.location.replace("http://127.0.0.1:5500/index.html")
+}
+
 const tarjetas = [];
 
 
@@ -13,6 +22,13 @@ class NuevaTarjeta {
     }
 }
 
+class NuevaActividad {
+    constructor(accion, receptor, dinero) {
+        this.accion = accion,
+            this.receptor = receptor,
+            this.dinero = dinero
+    }
+}
 
 
 
@@ -68,7 +84,7 @@ function transferir() {
 
 /* funcion para evaluar los datos ingresados */
 function enviartransferencia() {
-    const dinero = document.querySelector("#transf").value;
+    const dinero =parseInt(document.querySelector("#transf").value);
     const cbu = document.querySelector("#transfCbu").value;
     if (!dinero || !cbu) {
         alert("complete todos los campos porfavor")
@@ -81,6 +97,7 @@ function enviartransferencia() {
 
 
         console.log(`se transfirio ${dinero} a ${cbu}`)
+        
         saldo = saldo - dinero;
         acciones.innerHTML = "";
         mostrarSaldo(saldo);
@@ -116,8 +133,8 @@ function depositar() {
 
 }
 function agregarDeposito(){
-const dineroDeposito= document.querySelector("#depo").value;
-
+const dineroDeposito= parseInt(document.querySelector("#depo").value);
+parseInt(dineroDeposito);
 
 let mensaje=!dineroDeposito?"Ingrese el dinero que desea agregar a su cuenta": mostrarDeposito(dineroDeposito);
 
@@ -127,6 +144,7 @@ function mostrarDeposito(d){
     saldo=saldo+ d ;
     mostrarSaldo(saldo);
     acciones.innerHTML = "";
+    console.log(saldo)
     return msj=`se ha agregado ${d} a su cuenta `;
  
 }
