@@ -4,9 +4,8 @@
 ya que si no hay ninguno me linkea al login y si aun no han cerrado sesion
 seguiria en el wallet */
 
-if(!localStorage.getItem("UsuarioIngresado")){
-    window.location.replace("http://127.0.0.1:5500/index.html")
-}
+/* CON OPERADOR Y */
+!localStorage.getItem("UsuarioIngresado") && window.location.replace("http://127.0.0.1:5500/index.html");
 
 const tarjetas = [];
 
@@ -24,7 +23,7 @@ class NuevaTarjeta {
 
 class NuevaActividad {
     constructor(accion, receptor, dinero) {
-        this.accion = accion,
+            this.accion = accion,
             this.receptor = receptor,
             this.dinero = dinero
     }
@@ -65,8 +64,8 @@ function transferir() {
     transferTabla.innerHTML = `
                                
                               <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
-                              <li > <label for="transf">AR$</label> <input class="menuAcciones__aciones__input" id="transf" type="text" placeholder="Dinero a transferir$$$"></li>
-                              <li><input class="menuAcciones__aciones__input" id="transfCbu" type="text" placeholder="ingrese CBU o alias "></li>
+                              <li> <label for="transf">AR$</label> <input class="menuAcciones__aciones__input" id="transf" type="text" placeholder="Dinero a transferir$$$"></li>
+                              <li><label for="transfCbu"> <i class="bi bi-person"></i></label><input class="menuAcciones__aciones__input" id="transfCbu" type="text" placeholder="ingrese CBU o alias "></li>
                               <button id="submitTransf" >TRANSFERIR</button>  
                               `
 
@@ -84,7 +83,7 @@ function transferir() {
 
 /* funcion para evaluar los datos ingresados */
 function enviartransferencia() {
-    const dinero =parseInt(document.querySelector("#transf").value);
+    const dinero =parseFloat(document.querySelector("#transf").value);
     const cbu = document.querySelector("#transfCbu").value;
     if (!dinero || !cbu) {
         alert("complete todos los campos porfavor")
@@ -99,12 +98,14 @@ function enviartransferencia() {
         console.log(`se transfirio ${dinero} a ${cbu}`)
         
         saldo = saldo - dinero;
+        console.log(saldo)
         acciones.innerHTML = "";
         mostrarSaldo(saldo);
-
+        
     }
-
-
+     
+    mostrarActividades(new NuevaActividad(`transferiste`,cbu,dinero));
+    
 }
 /* FIN TRANSFERENCIA */
 
@@ -132,21 +133,25 @@ function depositar() {
     btndepositar.addEventListener("click", agregarDeposito);
 
 }
-function agregarDeposito(){
-const dineroDeposito= parseInt(document.querySelector("#depo").value);
-parseInt(dineroDeposito);
 
+function agregarDeposito(){
+const dineroDeposito= parseFloat(document.querySelector("#depo").value);
+
+/* OPERADOR TERNARIO */
 let mensaje=!dineroDeposito?"Ingrese el dinero que desea agregar a su cuenta": mostrarDeposito(dineroDeposito);
 
-              alert(mensaje);
+alert(mensaje);
 }
+
 function mostrarDeposito(d){
     saldo=saldo+ d ;
     mostrarSaldo(saldo);
     acciones.innerHTML = "";
-    console.log(saldo)
+    mostrarSaldo(saldo);
+
+    mostrarActividades(new NuevaActividad(`agregaste`,`a tu cuenta`,d));
     return msj=`se ha agregado ${d} a su cuenta `;
- 
+   
 }
 /* FIN DEPOSITO */
 
@@ -159,8 +164,8 @@ function extraer() {
     const  extraTabla = document.createElement("ul")
     extraTabla.innerHTML = `
                               <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
-                              <li > <label for="extra">AR$</labeel> <input class="menuAcciones__aciones__input" id="extra" type="text" placeholder="Dinero a extraer$$$"></li>
-                              <li> <input class="menuAcciones__aciones__input" id="dniExtra" type="text" placeholder="D.N.I"> </li>
+                              <li> <label for="extra">AR$</labeel> <input class="menuAcciones__aciones__input" id="extra" type="text" placeholder="Dinero a extraer$$$"></li>
+                              <li> <label> <i class="bi bi-person-video3"></i></label> <input class="menuAcciones__aciones__input" id="dniExtra" type="text" placeholder="D.N.I"> </li>
                               <button id="submitExtra"> Generar Orden </button> </div>
                                
                               `
@@ -188,6 +193,7 @@ function generarOrden(){
   else if (dineroExtraer>0 ){
      alert("su orden de extraccion fue generada")
      acciones.innerHTML = "";
+     mostrarActividades(new NuevaActividad(`Orden de extraccion`,dniExtraer,dineroExtraer));
   }
 }
 

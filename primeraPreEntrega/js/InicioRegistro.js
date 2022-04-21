@@ -2,16 +2,15 @@
 /* esta condicion me sirve para saber si hay un usuario ingresado o no-
 ya que si hay alguno no me deja ingresar al login hasta que cierre sesion */
 
-if(localStorage.getItem("UsuarioIngresado")){
-    window.location.replace("http://127.0.0.1:5500/paginas/billetera.html")
-}
+/* USANDO OPERADOR && */
+localStorage.getItem("UsuarioIngresado") &&  window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
 
 const Usuarios = [
     { nombre: "Fabricio",apellido: "alberto",correo: "fabriciohugoalberto16@gmail.com",contraseña: 42856838,saldo:15000},
     { nombre: "luis",    apellido: "alberto",correo: "luis@gmail.com",contraseña: 42856838,saldo:15000},
 
 ];  
-localStorage.setItem("Usuarios" , JSON.stringify(Usuarios))
+
 
 
 class NuevoUsuario {
@@ -32,12 +31,17 @@ class UsuarioIngresado{
     this.saldo=saldo
     }
 }
-
-
-function recuperar(){
-    const recuperado=JSON.parse(localStorage.getItem("Usuarios")) || console.log('no hay datos')
-    Usuarios.push(recuperado)
+/* esta funcion comprobar() entra al localstorage y si encuentra que ya existe una lista de usuarios no haga nada, y si no
+existiese le agregue USUARIOS, mas que nada sirve para que cuando recargue la pagina no me borre los registros 
+que se hicieron*/
+function comprobar(){
+    /* OPERADOR    OR  */
+    let comp=JSON.parse(localStorage.getItem("Usuarios")) ||  localStorage.setItem("Usuarios",JSON.stringify(Usuarios));
+     console.log(comp);
 }
+comprobar();
+
+
 
 ///////////////REGISTAR USUARIO NUEVO////////////////////////////////////////////
 
@@ -46,19 +50,19 @@ btnRegistro.addEventListener('click', AgregarUsuario);
 
 
 function AgregarUsuario(){
-
+/* recupera el array del storage */
+     let recuperado=JSON.parse(localStorage.getItem("Usuarios"))
+/* guarda en una variable los datos que me retorna la funcion */
     let NuevoUsuario = registrar()
-
-    recuperar( )
-   
-    localStorage.setItem("Usuarios",JSON.stringify(NuevoUsuario));
+/* agrega los datos que me devuelve registrar() a lo que recupere del storage */
+    recuperado.push(NuevoUsuario)
+/* subo todo el array con un nuevo objeto(new user) al storage */
+    localStorage.setItem("Usuarios",JSON.stringify(recuperado));
 
     alert("usuario registrado")
     login.classList.remove( 'active')
     regist.classList.remove( 'active')
     window.location.replace('http://127.0.0.1:5500/index.html')
-
-   return recuperado;
 }
 
 
@@ -133,11 +137,11 @@ function iniciarSesion() {
 
 
 function validarIngreso(correo, contraseña) {
-    if (correo == "" || contraseña == "") {
-        return false
-    } else {
-        return true
-    }
+
+
+/* OPERADOR TERNARIO */
+  let ret= (correo == "" || contraseña == "")? false : true;
+  return ret;
 }
 
 
