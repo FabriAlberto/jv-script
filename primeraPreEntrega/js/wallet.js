@@ -86,7 +86,7 @@ function enviartransferencia() {
     const dinero = parseFloat(document.querySelector("#transf").value);
     const cbu = document.querySelector("#transfCbu").value;
     if (!dinero || !cbu) {
-        error(`COMPLETE TODOS LOS DATOS PORFAVOR`);
+        error(`COMPLETE TODOS LOS DATOS PORFAVOR  🙏`);
     }
     else if (dinero > saldo) {
         error("SU SALDO ES INSUFICIENTE ");
@@ -182,7 +182,7 @@ function generarOrden() {
     const dniExtraer = document.querySelector("#dniExtra").value;
 
     if (!dineroExtraer || !dniExtraer) {
-        error("COMPLETE TODOS LOS DATOS")
+        error("COMPLETE TODOS LOS DATOS PORFAVOR 🙏")
     }
     else if (dniExtraer.length !== 8) {
         error("INGRESE CORRECTAMENTE SU DNI")
