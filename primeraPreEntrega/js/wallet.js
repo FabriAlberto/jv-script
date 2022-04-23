@@ -23,7 +23,7 @@ class NuevaTarjeta {
 
 class NuevaActividad {
     constructor(accion, receptor, dinero) {
-            this.accion = accion,
+        this.accion = accion,
             this.receptor = receptor,
             this.dinero = dinero
     }
@@ -73,7 +73,7 @@ function transferir() {
 
     /* boton que realiza el envio de informacion */
     let btnTransf = document.querySelector("#submitTransf");
-    btnTransf.addEventListener("click",enviartransferencia);
+    btnTransf.addEventListener("click", enviartransferencia);
     /* boton que cierra */
     cerrarVentana("#cerrar", acciones)
 
@@ -83,29 +83,29 @@ function transferir() {
 
 /* funcion para evaluar los datos ingresados */
 function enviartransferencia() {
-    const dinero =parseFloat(document.querySelector("#transf").value);
+    const dinero = parseFloat(document.querySelector("#transf").value);
     const cbu = document.querySelector("#transfCbu").value;
     if (!dinero || !cbu) {
-        alert("complete todos los campos porfavor")
+        error(`COMPLETE TODOS LOS DATOS PORFAVOR`);
     }
     else if (dinero > saldo) {
-        alert("su saldo es insuficiente para realizar esta operacion");
+        error("SU SALDO ES INSUFICIENTE ");
     }
     else if ((dinero > 0) && (dinero <= saldo)) {
-        alert("su operacion fue exitosa")
-
-
-        console.log(`se transfirio ${dinero} a ${cbu}`)
         
+        sweetAlerts(`Se Transfirio $ ${dinero} a ${cbu}`);
+        console.log(`Se transfirio ${dinero} a ${cbu}`);
+
         saldo = saldo - dinero;
         console.log(saldo)
         acciones.innerHTML = "";
         mostrarSaldo(saldo);
-        
+        mostrarActividades(new NuevaActividad(`Transferiste`, cbu,`-$${dinero}`));
     }
-     
-    mostrarActividades(new NuevaActividad(`transferiste`,cbu,dinero));
+
     
+
+
 }
 /* FIN TRANSFERENCIA */
 
@@ -114,10 +114,10 @@ function enviartransferencia() {
 /* Depositar, evento que se realiza al hacer click al btn#deposito */
 function depositar() {
 
-  
+
 
     const acciones = document.querySelector("#acciones");
-    const  depoTabla = document.createElement("ul")
+    const depoTabla = document.createElement("ul")
     depoTabla.innerHTML = `
                                
                               <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
@@ -129,29 +129,29 @@ function depositar() {
 
     acciones.append(depoTabla);
     cerrarVentana("#cerrar", acciones)
-    const btndepositar= document.querySelector("#submitDepo");
+    const btndepositar = document.querySelector("#submitDepo");
     btndepositar.addEventListener("click", agregarDeposito);
 
 }
 
-function agregarDeposito(){
-const dineroDeposito= parseFloat(document.querySelector("#depo").value);
+function agregarDeposito() {
+    const dineroDeposito = parseFloat(document.querySelector("#depo").value);
 
-/* OPERADOR TERNARIO */
-let mensaje=!dineroDeposito?"Ingrese el dinero que desea agregar a su cuenta": mostrarDeposito(dineroDeposito);
-
-alert(mensaje);
+    /* OPERADOR TERNARIO */
+    let mensaje = !dineroDeposito ? "Ingrese el dinero que desea agregar a su cuenta" : mostrarDeposito(dineroDeposito);
+     
+    sweetAlerts(mensaje);
+   
 }
 
-function mostrarDeposito(d){
-    saldo=saldo+ d ;
+function mostrarDeposito(d) {
+    saldo = saldo + d;
     mostrarSaldo(saldo);
     acciones.innerHTML = "";
     mostrarSaldo(saldo);
+    mostrarActividades(new NuevaActividad(`Agregaste`, `a tu cuenta`, `+$${d}`));
+    return msj = `Se han agregado ${d} a su cuenta `;
 
-    mostrarActividades(new NuevaActividad(`agregaste`,`a tu cuenta`,d));
-    return msj=`se ha agregado ${d} a su cuenta `;
-   
 }
 /* FIN DEPOSITO */
 
@@ -159,9 +159,9 @@ function mostrarDeposito(d){
 
 
 function extraer() {
-    
+
     const acciones = document.querySelector("#acciones");
-    const  extraTabla = document.createElement("ul")
+    const extraTabla = document.createElement("ul")
     extraTabla.innerHTML = `
                               <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
                               <li> <label for="extra">AR$</labeel> <input class="menuAcciones__aciones__input" id="extra" type="text" placeholder="Dinero a extraer$$$"></li>
@@ -172,29 +172,29 @@ function extraer() {
 
     acciones.append(extraTabla);
     cerrarVentana("#cerrar", acciones)
-    const btnExtraer= document.querySelector("#submitExtra");
+    const btnExtraer = document.querySelector("#submitExtra");
     btnExtraer.addEventListener("click", generarOrden);
 
 }
 
-function generarOrden(){
-  const dineroExtraer = document.querySelector("#extra").value;
-  const dniExtraer = document.querySelector("#dniExtra").value;
+function generarOrden() {
+    const dineroExtraer = document.querySelector("#extra").value;
+    const dniExtraer = document.querySelector("#dniExtra").value;
 
-  if(!dineroExtraer || !dniExtraer){
-      alert("complete todos los datos porfavor")
-  }
-  else if( dniExtraer.length!==8){
-      alert("ingrese correctamente su dni")
-  }
-  else if (dineroExtraer>saldo){
-      alert("el monto que desea extraer es superior a su saldo")
-  }
-  else if (dineroExtraer>0 ){
-     alert("su orden de extraccion fue generada")
-     acciones.innerHTML = "";
-     mostrarActividades(new NuevaActividad(`Orden de extraccion`,dniExtraer,dineroExtraer));
-  }
+    if (!dineroExtraer || !dniExtraer) {
+        error("COMPLETE TODOS LOS DATOS")
+    }
+    else if (dniExtraer.length !== 8) {
+        error("INGRESE CORRECTAMENTE SU DNI")
+    }
+    else if (dineroExtraer > saldo) {
+        error("SALDO INSUFICIENTE")
+    }
+    else if (dineroExtraer > 0) {
+        sweetAlerts(`Genero una orden de extraccion para ${dniExtraer} exitosamente`)
+        acciones.innerHTML = "";
+        mostrarActividades(new NuevaActividad(`Orden de extraccion `, `DNI:${dniExtraer}` , dineroExtraer));
+    }
 }
 
 

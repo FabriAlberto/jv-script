@@ -5,6 +5,42 @@ ya que si hay alguno no me deja ingresar al login hasta que cierre sesion */
 /* USANDO OPERADOR && */
 localStorage.getItem("UsuarioIngresado") &&  window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
 
+function sweetAlerts(a){
+
+    Swal.fire({
+       
+        icon:`success`,
+        duration:1500,
+        title: a,
+        background:'#593eec',
+        color:'#Fff'
+    })
+}
+function error(p){
+
+
+    Toastify({
+
+        text: `${p}`,
+        
+        duration: 1500,
+        position:"center",
+        gravity:"bottom",
+        style: {
+            
+            background:`#ffffff85`,
+            color:`#000`,
+            fontSize:`1rem`,
+            boxShadow:"none",
+            
+        }
+
+        
+        }).showToast();
+    
+
+}
+
 const Usuarios = [
     { nombre: "Fabricio",apellido: "alberto",correo: "fabriciohugoalberto16@gmail.com",contraseña: 42856838,saldo:15000},
     { nombre: "luis",    apellido: "alberto",correo: "luis@gmail.com",contraseña: 42856838,saldo:15000},
@@ -58,11 +94,12 @@ function AgregarUsuario(){
     recuperado.push(NuevoUsuario)
 /* subo todo el array con un nuevo objeto(new user) al storage */
     localStorage.setItem("Usuarios",JSON.stringify(recuperado));
-
-    alert("usuario registrado")
+    sweetAlerts("usuario registrado")
+    
     login.classList.remove( 'active')
     regist.classList.remove( 'active')
     window.location.replace('http://127.0.0.1:5500/index.html')
+    
 }
 
 
@@ -126,11 +163,11 @@ function iniciarSesion() {
              
         }
         else {
-            alert("los datos ingresados no son validos")    
+            error("LOS DATOS INGRESADOS NO SON VALIDOS")    
         }
     }
     else {
-        alert("porfavor ingrese todos los datos")
+        error("PORFAVOR INGRESE TODOS LOS DATOS")
     }
     
 }

@@ -95,9 +95,10 @@ a{
     border: none;
    
 }
-.form__inicio__submit:hover{
+.form__inicio__submit:hover,.form__inicio__submit :active{
      transform: scale(.97);
      background-color: #081427;
+     outline: none;
 }
 
 

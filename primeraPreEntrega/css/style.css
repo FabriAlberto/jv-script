@@ -79,10 +79,11 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
+    max-height: 100vh;
 }
 .general{
-    width: 60%;
+    width: 70%;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -195,7 +196,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 450px;
+    height: 350px;
     width: 80%;
     background-color: #1a1a1a;  
       position: absolute;
@@ -235,6 +236,7 @@ a {
     color: rgba(255, 255, 255, 0.397);
     padding-left: 10px;
     font-size: 1.6rem;
+   
 }
 
 
@@ -243,16 +245,49 @@ a {
 
 /* //////////////ACTIVIDADES///////////////// */
 .aside__actividades{
-    width:30% ;
-    height: auto;
+    width:20% ;
+    height:calc(100vh - 85px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  /*  background-color: #1e1e1e; */
+}
+.actividad{
+    width: 100%;
     display: flex;
     flex-direction: column;
     
-    align-items: center;
-  /*  background-color: #1e1e1e; */
+
+   
 }
 .actividad P{
-    margin-top: 20px;
+   /*  margin-top: 20px; */
+   text-align: center;
     color: #7A63FF;
+    /* border-bottom: 1px solid #1e1e1e; */
 }
+.actividades__ul{
+    width: 100%;
+    height: auto;
+}
+.actividades__ul__li{
 
+    color: #fff;
+    width: 98%;
+    height: 80px;
+    background-color: #1e1e1e;
+    margin-top: 5px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.actividades__ul__li p{
+    color:#fff;
+}
+.bi-check-circle{
+    color: #26ca5c;
+   
+}

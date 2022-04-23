@@ -40,30 +40,74 @@ function buscarSaldo() {
 
 
 /* ACTIVIDADES///////////////// */
-let actividades=[];
+let actividades = [];
 
-function comprobarAct(){
+function comprobarAct() {
 
-/* operador NULLISH que funciona cuando lo que me llega es null o undefined */
-    let comprobAct=JSON.parse(localStorage.getItem("Actividades")) ?? localStorage.setItem("Actividades",JSON.stringify(actividades))
+    /* operador NULLISH que funciona cuando lo que me llega es null o undefined */
+    let comprobAct = JSON.parse(localStorage.getItem("Actividades")) ?? localStorage.setItem("Actividades", JSON.stringify(actividades))
     console.log(comprobAct);
 }
 comprobarAct()
+let seccionActividades = document.querySelector("#actividades__ul")
+function mostrarActividades(s) {
 
-function mostrarActividades(s){
+    /* if (JSON.parse(localStorage.getItem("Actividades"))) { */
 
-    if(JSON.parse(localStorage.getItem("Actividades"))){
-        
-        let recupera=JSON.parse(localStorage.getItem("Actividades"))
+        let recupera = JSON.parse(localStorage.getItem("Actividades"))
         console.log(recupera)
         recupera.push(s);
-        localStorage.setItem("Actividades",JSON.stringify(recupera))
-    }
-    else{   
-         localStorage.setItem("Actividades",JSON.stringify(s))
-    }
-    
+        localStorage.setItem("Actividades", JSON.stringify(recupera))
+   /*  } */
+   /*  else {
+        localStorage.setItem("Actividades", JSON.stringify(s))
+    } */
 
+      let ultimaAccion=recupera.splice(-1);
+      console.log("ultimaaccion",ultimaAccion);
+    let liAct = document.createElement("li");
+    liAct.setAttribute("class", "actividades__ul__li")
+
+    liAct.innerHTML = `<i class="bi bi-check-circle"></i> <p class="p__accion">${ultimaAccion[0].accion} a 
+                          ${ultimaAccion[0].receptor}</p> <p class="p__dinero"> ${ultimaAccion[0].dinero}</p>`;
+    seccionActividades.append(liAct);
+
+
+
+}
+
+function sweetAlerts(a){
+
+    Swal.fire({
+        duration:1500,
+        icon:`success`,
+        title: a,
+        background:'#593eec',
+        color:'#Fff'
+    })
+}
+function error(p){
+
+
+    Toastify({
+
+        text: `${p}`,
+        
+        duration: 1500,
+        position:"center",
+        gravity:"bottom",
+        style: {
+            
+            background:`#ffffff85`,
+            color:`#000`,
+            fontSize:`1rem`,
+            boxShadow:"none",
+            
+        }
+
+        
+        }).showToast();
+    
 
 }
 
@@ -78,7 +122,7 @@ function mostrarActividades(s){
 ///evento para cerrar sesion///
 let btnCerrarsesion = document.querySelector("#btnCerrarSesion");
 btnCerrarsesion.addEventListener('click', () => {
-    alert("Gracias por usar nuestros servicios ;)")
+    sweetAlerts("Gracias por usar nuestros servicios ;)")
     window.location.replace("http://127.0.0.1:5500/index.html")
 
 
