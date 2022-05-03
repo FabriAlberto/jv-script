@@ -176,7 +176,7 @@ function iniciarSesion() {
 function validarIngreso(correo, contraseña) {
 
 
-/* OPERADOR TERNARIO */
+
   let ret= (correo == "" || contraseña == "")? false : true;
   return ret;
 }

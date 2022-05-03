@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/a11a1742be.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
   <title>Billetera Virtual</title>
 </head>
@@ -18,7 +20,7 @@
       <ul class="header__nav__ul">
         <li><a href="billetera.html"><img class="header__nav__ul__img" src="../imagenes/elparaiso.png"
               alt="logotipo-marca-wallet-billeteravirtual"></a></li>
-        <li id="nombreSaludo" class="header__nav__ul__li">  </li>
+        <li id="nombreSaludo" class="header__nav__ul__li"> </li>
         <li class="header__nav__ul__li">
           <button class="header__nav__ul__li__btn" id="btnCerrarSesion">Cerrar Sesion</button>
           <a href="#"><img class="header__nav__ul__img2" src="../imagenes/pngwing.com.png"></a>
@@ -41,24 +43,24 @@
       <section class="saldo">
         <div class="saldo__contenedor">
 
-        
-        <p class="saldo__contenedor__p"> AR$</p>
-        <article id="saldo" class="saldo__article">
-           <!-- SALDO///////////// -->
-        </article>
-       </div>
+
+          <p class="saldo__contenedor__p"> AR$</p>
+          <article id="saldo" class="saldo__article">
+            <!-- SALDO///////////// -->
+          </article>
+        </div>
 
       </section>
 
       <section class="menuAcciones">
-         
+
         <article class="menu">
 
           <button class="menu__botones" id="transferencia"><i class="fas fa-paper-plane"></i></button>
           <button class="menu__botones" id="deposito"><i class="fas fa-plus"></i></button>
-          <button class="menu__botones" id="orden"><i class="fas fa-copy"></i>  </button>
+          <button class="menu__botones" id="orden"><i class="fas fa-copy"></i> </button>
 
-          
+
         </article>
         <section class="menuAcciones__aciones" id="acciones">
           <!-- trasnferencias,extracciones,etc -->
@@ -79,6 +81,9 @@
 
   </main>
 
+  <section class="cotizacion__dolar col-2.5">
+  </section>
+ 
 
 
 
@@ -86,7 +91,12 @@
 
 
 
-
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/inicial.js"></script>
