@@ -5,7 +5,7 @@ ya que si hay alguno no me deja ingresar al login hasta que cierre sesion */
 /* USANDO OPERADOR && */
 localStorage.getItem("UsuarioIngresado") &&  window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
 
-function sweetAlerts(a){
+ function sweetAlerts(a){
 
     Swal.fire({
        
@@ -16,6 +16,7 @@ function sweetAlerts(a){
         color:'#Fff'
     })
 }
+
 function error(p){
 
 
