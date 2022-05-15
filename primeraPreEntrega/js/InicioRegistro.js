@@ -43,8 +43,8 @@ function error(p){
 }
 
 const Usuarios = [
-    { nombre: "Fabricio",apellido: "alberto",correo: "fabriciohugoalberto16@gmail.com",contraseña: 42856838,saldo:15000},
-    { nombre: "luis",    apellido: "alberto",correo: "luis@gmail.com",contraseña: 42856838,saldo:15000},
+    { nombre: "Fabricio",apellido: "alberto",correo: "fabriciohugoalberto16@gmail.com",contraseña: 42856838,saldo:15000,Tarjeta:[],Actividades:[] },
+    { nombre: "luis",    apellido: "alberto",correo: "luis@gmail.com",contraseña: 42856838,saldo:15000,Tarjeta:[],Actividades:[] },
 
 ];  
 
@@ -52,12 +52,14 @@ const Usuarios = [
 
 class NuevoUsuario {
 
-    constructor(nombre, apellido, correo, contraseña,saldo) {
+    constructor(nombre, apellido, correo, contraseña,saldo,Tarjeta,Actividades) {
         this.nombre = nombre,
             this.apellido = apellido,
             this.correo = correo,
             this.contraseña = contraseña,
             this.saldo=saldo
+            this.Tarjeta=Tarjeta
+            this.Actividades=Actividades
     }
 
 }
@@ -114,7 +116,7 @@ function registrar() {
      const contraseñaReg=document.querySelector("#contraseñaReg").value
     
      
-    return new NuevoUsuario(nombreReg, apellidoReg, correoReg, contraseñaReg,15000);
+    return new NuevoUsuario(nombreReg, apellidoReg, correoReg, contraseñaReg,15000,[],[]);
 
 }
 

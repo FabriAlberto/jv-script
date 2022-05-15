@@ -7,20 +7,6 @@ seguiria en el wallet */
 /* CON OPERADOR Y */
 !localStorage.getItem("UsuarioIngresado") && window.location.replace("http://127.0.0.1:5500/index.html");
 
-const tarjetas = [];
-
-
-class NuevaTarjeta {
-    constructor(nombre, apellido, banco, numDeTarj, expiracion, contraseña) {
-        this.nombre = nombre,
-            this.apellido = apellido,
-            this.banco = banco,
-            this.numDeTarj = numDeTarj,
-            this.expiracion = expiracion,
-            this.contraseña = contraseña
-    }
-}
-
 class NuevaActividad {
     constructor(accion, receptor, dinero) {
         this.accion = accion,
@@ -92,18 +78,23 @@ function enviartransferencia() {
         error("SU SALDO ES INSUFICIENTE ");
     }
     else if ((dinero > 0) && (dinero <= saldo)) {
-        
+
         sweetAlerts(`Se Transfirio $ ${dinero} a ${cbu}`);
         console.log(`Se transfirio ${dinero} a ${cbu}`);
-
-        saldo = saldo - dinero;
-        console.log(saldo)
+        
+        let UsuarioIngresado = recuperarUi();
+        let Usuarios = recuperarU();
+        let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
+        console.log(Users.saldo)
+         Users.saldo = Users.saldo - dinero;
+        localStorage.setItem("Usuarios", JSON.stringify(Usuarios));
+        console.log(Users.saldo)
         acciones.innerHTML = "";
-        mostrarSaldo(saldo);
-        mostrarActividades(new NuevaActividad(`Transferiste`, cbu,`-$${dinero}`));
+        mostrarSaldo();
+        mostrarActividades(new NuevaActividad(`Transferiste`, cbu, `-$${dinero}`));
     }
 
-    
+
 
 
 }
@@ -139,16 +130,20 @@ function agregarDeposito() {
 
     /* OPERADOR TERNARIO */
     let mensaje = !dineroDeposito ? "Ingrese el dinero que desea agregar a su cuenta" : mostrarDeposito(dineroDeposito);
-     
+
     sweetAlerts(mensaje);
-   
+
 }
 
 function mostrarDeposito(d) {
     saldo = saldo + d;
-    mostrarSaldo(saldo);
+    let UsuarioIngresado = recuperarUi();
+    let Usuarios = recuperarU();
+    let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
+     Users.saldo = Users.saldo + d;
+    localStorage.setItem("Usuarios", JSON.stringify(Usuarios));
     acciones.innerHTML = "";
-    mostrarSaldo(saldo);
+    mostrarSaldo();
     mostrarActividades(new NuevaActividad(`Agregaste`, `a tu cuenta`, `+$${d}`));
     return msj = `Se han agregado ${d} a su cuenta `;
 
@@ -193,27 +188,9 @@ function generarOrden() {
     else if (dineroExtraer > 0) {
         sweetAlerts(`Genero una orden de extraccion para ${dniExtraer} exitosamente`)
         acciones.innerHTML = "";
-        mostrarActividades(new NuevaActividad(`Orden de extraccion `, `DNI:${dniExtraer}` , dineroExtraer));
+        mostrarActividades(new NuevaActividad(`Orden de extraccion `, `DNI:${dniExtraer}`, dineroExtraer));
     }
 }
-
-
-
-
-function agregarTarjeta() {
-    nombre = prompt("Hola ingresa el nombre del titular")
-    apellido = prompt(" ingresa el apellido del titular")
-    banco = prompt(" ingresa el banco de la tarjeta")
-    numero = prompt(" ingresa el numero de la tarjeta")
-    expiracion = prompt(" ingresa la fecha de expiracion")
-    contraseña = prompt(" ingresa la contraseña");
-    console.log(`a agregado una nueva tarjeta a nombre de ${nombre} ${apellido}`)
-    return new NuevaTarjeta(apellido, nombre, banco, numero, expiracion, contraseña)
-
-
-
-}
-
 
 
 /* funcion para cerrar ventana en caso de que quiera salir */
@@ -225,6 +202,10 @@ function cerrarVentana(c, e) {
 
 
 
+function agregarTarjeta() {
+    window.location.assign("http://127.0.0.1:5500/paginas/Tarjetas.html")
+
+}
 
 
 

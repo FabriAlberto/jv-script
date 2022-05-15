@@ -19,62 +19,81 @@ function recuperarU() {
 
 /* Variable global del saldo del usuario */
 let saldo = buscarSaldo();
+
 /* mostrar saldo por defecto al iniciar */
 mostrarSaldo();
 function mostrarSaldo() {
 
-    /* let saldo = buscarSaldo(); */
     let saldoMostrar = document.querySelector("#saldo");
-    saldoMostrar.innerHTML = `<p class="saldo__article__p"> ${saldo} </p>`;
+    saldoMostrar.innerHTML = `<p class="saldo__article__p"> ${buscarSaldo()} </p>`;
 }
 
 function buscarSaldo() {
     let UsuarioIngresado = recuperarUi();
     let Usuarios = recuperarU();
     let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
+  /*   let Usuario=modificarUsuario(); */
     console.log(Users.saldo)
     return Users.saldo
 }
 
-
-
-
 /* ACTIVIDADES///////////////// */
-let actividades = [];
 
-function comprobarAct() {
-
-    /* operador NULLISH que funciona cuando lo que me llega es null o undefined */
-    let comprobAct = JSON.parse(localStorage.getItem("Actividades")) ?? localStorage.setItem("Actividades", JSON.stringify(actividades))
-    console.log(comprobAct);
-}
-comprobarAct()
 let seccionActividades = document.querySelector("#actividades__ul")
+
+/* funcion para guardar en el local storage  y despues llamado para pintar en pantalla*/
 function mostrarActividades(s) {
 
-    /* if (JSON.parse(localStorage.getItem("Actividades"))) { */
-
-        let recupera = JSON.parse(localStorage.getItem("Actividades"))
-        console.log(recupera)
-        recupera.push(s);
-        localStorage.setItem("Actividades", JSON.stringify(recupera))
-   /*  } */
-   /*  else {
-        localStorage.setItem("Actividades", JSON.stringify(s))
-    } */
-
-    let ultimaAccion=recupera.splice(-1);
-     console.log("ultimaaccion",ultimaAccion);
-    let liAct = document.createElement("li");
-    liAct.setAttribute("class", "actividades__ul__li")
-
-    liAct.innerHTML = `<i class="bi bi-check-circle"></i> <p class="p__accion">${ultimaAccion[0].accion} a 
-                          ${ultimaAccion[0].receptor}</p> <p class="p__dinero"> ${ultimaAccion[0].dinero}</p>`;
-    seccionActividades.append(liAct);
-
-
-
+        let UsuarioIngresado = recuperarUi();
+        let Usuarios = recuperarU();    
+        let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
+        let actividadPush=Users.Actividades;
+        actividadPush.push(s);
+        localStorage.setItem("Usuarios", JSON.stringify(Usuarios));
+  
+        pintarActividades(actividadPush);
 }
+/*funcion para pintar y actualizar actividades en pantalla  */
+
+function pintarActividades(actividadPush){
+
+    let listaAct=document.querySelector("#actividades__ul");
+    listaAct.innerHTML="";
+    actividadPush.forEach(act => {
+        let liAct = document.createElement("li");
+        liAct.setAttribute("class", "actividades__ul__li")
+     
+        liAct.innerHTML = `<i class="bi bi-check-circle"></i> <p class="p__accion">${act.accion} a 
+                              ${act.receptor}</p> <p class="p__dinero"> ${act.dinero}</p>`;
+        seccionActividades.append(liAct);
+    });
+
+   /*  let ultimaAccion=actividadPush.splice(-1);
+    console.log("ultimaaccion",ultimaAccion);
+   let liAct = document.createElement("li");
+   liAct.setAttribute("class", "actividades__ul__li")
+
+   liAct.innerHTML = `<i class="bi bi-check-circle"></i> <p class="p__accion">${ultimaAccion[0].accion} a 
+                         ${ultimaAccion[0].receptor}</p> <p class="p__dinero"> ${ultimaAccion[0].dinero}</p>`;
+   seccionActividades.append(liAct); */
+}
+function actividadesStorage(){
+    let UsuarioIngresado = recuperarUi();
+    let Usuarios = recuperarU();    
+    let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
+    let actividadPush=Users.Actividades;
+
+    actividadPush?pintarActividades(actividadPush):console.log("nohay");
+}
+actividadesStorage();
+
+
+
+
+
+
+
+
 
 function sweetAlerts(a){
 
@@ -110,10 +129,6 @@ function error(p){
     
 
 }
-
-
-
-
 
 
 
@@ -178,3 +193,7 @@ function mostrarDolar(obj){
     blueV[0].innerHTML = `$ ${obj.blue.value_sell}` */
 
 }
+
+
+
+
