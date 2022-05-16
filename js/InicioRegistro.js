@@ -177,9 +177,6 @@ function iniciarSesion() {
 
 
 function validarIngreso(correo, contraseña) {
-
-
-
   let ret= (correo == "" || contraseña == "")? false : true;
   return ret;
 }

@@ -5,9 +5,77 @@
 }
 
 body {
-	background:  #1e1e1e;
-	font-family: 'Lato', sans-serif;
+	background:  #101010;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
 }
+/* /////////////////HEADERR////////////////////////// */
+
+.header {
+    background-color: #1e1e1e;
+
+}
+
+.header__nav {
+    width: 100%;
+    height: 80px;
+}
+
+.header__nav__ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+
+}
+
+
+.header__nav__ul__img {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.header__nav__ul__img2 {
+    width: 60px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid #7A63FF;
+
+}
+
+.header__nav__ul__li {
+    color: #e2e2e254;
+    font-size: 1.5rem;
+    display: flex;
+    align-items:center;
+}
+.header__nav__ul__li button{
+    margin-right: 30px;
+    border-radius: 0px;
+    border: none;
+    height: 30px;
+    width: 100px;
+    color: #1e1e1e;
+    background-color: #7A63FF;
+    font-size: 16px;
+}
+.header__nav__ul__li button:hover{
+ background-color: #6851ec;
+ cursor: pointer;
+ 
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 
 .contenedor {
 	width: 90%;
@@ -19,11 +87,10 @@ body {
 	align-items: center;
 	height: 100vh;
 	overflow: hidden;
-	background-color:#1e1e1e;
+	background-color:#101010;
+	min-height: 130vh;
 }
-.contenedor_active{
-	height: 130vh;
-}
+
 
 /* Estilos Generales de las Tarjetas */
 .tarjeta {
@@ -100,51 +167,19 @@ body {
 
 
 
-/* Contenedor Boton ----------*/
-.btn-abrir-formulario {
-	width: 50px;
-	height: 50px;
-	font-size: 20px;
-	line-height: 20px;
-	background: #7A63FF;
-	color: #fff;
-	position: relative;
-	top: -25px;
-	z-index: 3;
-	border-radius: 100%;
-	padding: 5px;
-	transition: all .2s ease;
-	border: none;
-	cursor: pointer;
-}
-
-.btn-abrir-formulario:hover {
-	background: #6851ec;
-}
-
-.btn-abrir-formulario.active {
-	transform: rotate(45deg);
-}
-
 /* Formulario Tarjeta ----------*/
 .formulario-tarjeta {
 	background: #fff;
 	width: 100%;
-	height:0vh;
+	height:100vh;
 	max-width: 700px;
-	padding: 150px 30px 30px 30px;
+	padding: 200px 30px 30px 30px;
 	border-radius: 10px;
 	position: relative;
 	top: -150px;
-	z-index: 1;
-	clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-	transition: clip-path .3s ease-out;
 }
 
-.formulario-tarjeta.active {
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-	height: auto;
-}
+
 
 .formulario-tarjeta label {
 	display: block;
@@ -225,4 +260,84 @@ body {
 
 .formulario-tarjeta .btn-enviar:hover {
 	background: #6851ec;
+}
+.h2__tarjetas{
+	display: inline-block;
+	color: #4b4949;
+	margin: 30px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #7A63FF ;
+}
+.misTarjetas{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap:wrap;
+	align-items: center;
+	margin-bottom: 100px;
+}
+.contenedor__tarjetas{
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin: 40px;
+
+
+}
+.btnBorrarTarjeta{
+	background-color: transparent;
+	border: none;
+	margin-left: 400px;
+}
+.bi-trash{
+	color:#fff;
+	font-size: 1.5rem;
+
+}
+/* Menu1////////////////////////////// */
+/* Menu1////////////////////////////// */
+.menu1{
+    background-color: #1e1e1e;
+    position: fixed;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 66px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+	z-index: 1111;
+}
+.menu1__ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+.menu1__ul__li{
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 30px 0px 30px ;
+    padding: 14px 20px 14px 20px ;
+    background-color: #3636367e;
+    border-radius: 50%;
+}
+
+
+.menu1__ul__li a{
+    font-size: 1.5rem;
+    color:#fff;
+    
+}
+.menu1__ul__li a :hover{
+    font-size: 1.5rem;
+    color:#7A63FF;
+    
 }

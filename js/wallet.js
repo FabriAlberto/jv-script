@@ -33,14 +33,6 @@ Btnorden.addEventListener('click', extraer)
 let Btntarjetas = document.querySelector("#tarjetas")
 //aun no definido
 
-
-let BtnnuevaTarjeta = document.querySelector("#nuevaTarjeta")
-BtnnuevaTarjeta.addEventListener('click', agregarTarjeta)
-
-
-
-
-
 /* transferir, evento que se realiza al hacer click al btn#trasnferencia */
 function transferir() {
 
@@ -49,10 +41,10 @@ function transferir() {
     let transferTabla = document.createElement("ul")
     transferTabla.innerHTML = `
                                
-                              <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
+                              <div class="boton__cerrar"> <button class="btn__cerrar" id="cerrar"><i class="bi bi-x-lg"></i></button> </div>
                               <li> <label for="transf">AR$</label> <input class="menuAcciones__aciones__input" id="transf" type="text" placeholder="Dinero a transferir$$$"></li>
                               <li><label for="transfCbu"> <i class="bi bi-person"></i></label><input class="menuAcciones__aciones__input" id="transfCbu" type="text" placeholder="ingrese CBU o alias "></li>
-                              <button id="submitTransf" >TRANSFERIR</button>  
+                              <button  class="btn__acciones" id="submitTransf" >TRANSFERIR</button>  
                               `
 
     acciones.append(transferTabla);
@@ -91,7 +83,7 @@ function enviartransferencia() {
         console.log(Users.saldo)
         acciones.innerHTML = "";
         mostrarSaldo();
-        mostrarActividades(new NuevaActividad(`Transferiste`, cbu, `-$${dinero}`));
+        mostrarActividades(new NuevaActividad(`Transferiste a`, cbu, `-$${dinero}`));
     }
 
 
@@ -111,10 +103,10 @@ function depositar() {
     const depoTabla = document.createElement("ul")
     depoTabla.innerHTML = `
                                
-                              <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
-                              <li > <label for="depo">AR$</label> <input class="menuAcciones__aciones__input" id="depo" type="text" placeholder="Dinero para depositar$$$"></li>
+                              <div class="boton__cerrar"> <button class="btn__cerrar" id="cerrar"><i class="bi bi-x-lg"></i></button> </div>
+                              <li > <label for="depo">AR$</label> <input class="menuAcciones__aciones__input" id="depo" type="text" placeholder="Dinero para agregar$"></li>
 
-                              <button id="submitDepo">Agregar a tu cuenta</button>
+                              <button  class="btn__acciones" id="submitDepo">AGREGAR A MI CUENTA</button>
                                
                               `
 
@@ -128,10 +120,14 @@ function depositar() {
 function agregarDeposito() {
     const dineroDeposito = parseFloat(document.querySelector("#depo").value);
 
-    /* OPERADOR TERNARIO */
-    let mensaje = !dineroDeposito ? "Ingrese el dinero que desea agregar a su cuenta" : mostrarDeposito(dineroDeposito);
-
+    
+    if (!dineroDeposito) {
+    error("Ingrese el dinero que desea agregar a su cuenta 🙏") }
+    else{
+    mostrarDeposito(dineroDeposito);
     sweetAlerts(mensaje);
+    }
+   
 
 }
 
@@ -150,18 +146,15 @@ function mostrarDeposito(d) {
 }
 /* FIN DEPOSITO */
 
-
-
-
 function extraer() {
 
     const acciones = document.querySelector("#acciones");
     const extraTabla = document.createElement("ul")
     extraTabla.innerHTML = `
-                              <div> <button class="btn__cerrar" id="cerrar">X</button> </div>
+                              <div class="boton__cerrar" > <button class="btn__cerrar" id="cerrar"><i class="bi bi-x-lg"></i></button> </div>
                               <li> <label for="extra">AR$</labeel> <input class="menuAcciones__aciones__input" id="extra" type="text" placeholder="Dinero a extraer$$$"></li>
                               <li> <label> <i class="bi bi-person-video3"></i></label> <input class="menuAcciones__aciones__input" id="dniExtra" type="text" placeholder="D.N.I"> </li>
-                              <button id="submitExtra"> Generar Orden </button> </div>
+                              <button class="btn__acciones" id="submitExtra">GENERAR ORDEN</button> </div>
                                
                               `
 
@@ -188,7 +181,7 @@ function generarOrden() {
     else if (dineroExtraer > 0) {
         sweetAlerts(`Genero una orden de extraccion para ${dniExtraer} exitosamente`)
         acciones.innerHTML = "";
-        mostrarActividades(new NuevaActividad(`Orden de extraccion `, `DNI:${dniExtraer}`, dineroExtraer));
+        mostrarActividades(new NuevaActividad(`Orden de extraccion `, `DNI:${dniExtraer}`, `$${dineroExtraer}`));
     }
 }
 
@@ -202,10 +195,6 @@ function cerrarVentana(c, e) {
 
 
 
-function agregarTarjeta() {
-    window.location.assign("http://127.0.0.1:5500/paginas/Tarjetas.html")
-
-}
 
 
 
