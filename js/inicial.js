@@ -154,7 +154,7 @@ function mostrarDolar(obj){
 
      let dol=document.querySelector(".cotizacion__dolar")
      
-     dol.innerHTML=` <table class="table table-dark table-striped">
+     dol.innerHTML=` <table class="table table-dark ">
      <thead>
        <tr>
          <th scope="col" style="color: #26ca5c;">$$</th>

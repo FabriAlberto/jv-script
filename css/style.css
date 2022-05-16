@@ -77,12 +77,12 @@ a {
 
 
 /* general///////////////// */
-.main__billetera{
+/* .main__billetera{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     max-height: 100vh;
-}
+} */
 .general{
     width: 65%;
     margin-left: 50px;
@@ -308,6 +308,10 @@ a {
 
  
 }
+.actividad__titulo {
+    font-weight: bold;
+   border-bottom: 1px solid #1e1e1e;
+  }
 .actividades__ul__li{
 
     color: #fff;
@@ -331,7 +335,13 @@ a {
 
 .cotizacion__dolar{
    margin-top: 50px;
+   height: calc(100vh - 190px);
 }
+.table>:not(caption)>*>* {
+    background-color: #101010;
+}
+
+
 /* Menu1////////////////////////////// */
 .menu1{
     background-color: #1e1e1e;
@@ -374,4 +384,79 @@ a {
     font-size: 1.5rem;
     color:#7A63FF;
     
+}
+
+ul{
+    padding-left: 0;
+}
+
+@media only screen and (max-width: 900px){
+
+  .main__billetera{
+
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .general{
+    width: 100%;
+    margin-left: 0px;
+    order: 0;
+   
+}
+.aside__actividades{
+   width:80% ;
+   margin: auto;
+   height: 550px;
+   order: 3;
+
+  /*  background-color: #1e1e1e; */
+}
+.actividad__contenedor{
+    height:400px;
+    
+}
+
+.cotizacion__dolar{
+    height: auto;
+    width: 80%;
+    margin: auto;
+    order: 2;
+    margin-top: 170px;
+}
+}
+@media only screen and (max-width: 576px){
+
+
+    .aside__actividades{
+        width: 95%;
+    }
+   
+
+   .menuAcciones__aciones ul{
+       width: 95%;
+   }
+   .saldo__contenedor{
+       width: 70%;
+       height: 40%;
+       font-size: 2.5rem;
+   }
+   .header__nav__ul__img2{
+       display: none;
+   }
+   .header__nav__ul__li{
+       font-size: 1rem;
+   }
+   .header__nav__ul__img{
+       width: 80px;
+       margin-left: none;
+   }
+   .header__nav__ul button{
+       margin-right: 5px;
+       width: 90px;
+       font-size: 12px;
+
+   }
+  
 }
