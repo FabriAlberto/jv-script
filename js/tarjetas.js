@@ -1,7 +1,7 @@
 
 
 
-!localStorage.getItem("UsuarioIngresado") && window.location.replace("http://127.0.0.1:5500/index.html");
+!localStorage.getItem("UsuarioIngresado") && window.location.replace("../index.html");
 
 
 
@@ -236,7 +236,7 @@ function borrarTarjeta(num) {
 
 let btnCerrarsesion = document.querySelector("#btnCerrarSesion");
 btnCerrarsesion.addEventListener('click', () => {
-    window.location.replace("http://127.0.0.1:5500/index.html")
+    window.location.replace("../index.html")
 
 
     localStorage.removeItem("UsuarioIngresado")/* esto remueve el objeto donde almaceno nombre

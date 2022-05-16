@@ -3,7 +3,7 @@
 ya que si hay alguno no me deja ingresar al login hasta que cierre sesion */
 
 /* USANDO OPERADOR && */
-localStorage.getItem("UsuarioIngresado") &&  window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
+localStorage.getItem("UsuarioIngresado") &&  window.location.replace("./paginas/billetera.html");
 
  function sweetAlerts(a){
 
@@ -101,7 +101,7 @@ function AgregarUsuario(){
     
     login.classList.remove( 'active')
     regist.classList.remove( 'active')
-    window.location.replace('http://127.0.0.1:5500/index.html')
+    window.location.replace('./index.html')
     
 }
 
@@ -161,7 +161,7 @@ function iniciarSesion() {
             console.log(nombreRegistrado.nombre);
             let ingresoUsuario= new UsuarioIngresado(nombreRegistrado.nombre,nombreRegistrado.apellido,nombreRegistrado.saldo)
             localStorage.setItem("UsuarioIngresado", JSON.stringify(ingresoUsuario));
-            window.location.replace("http://127.0.0.1:5500/paginas/billetera.html");
+            window.location.replace("./paginas/billetera.html");
             console.log(nombre);
              
         }

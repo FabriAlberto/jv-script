@@ -358,20 +358,16 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px 30px 0px 30px ;
-    padding: 14px 20px 14px 20px ;
-    background-color: #3636367e;
-    border-radius: 50%;
+    
 }
 
 .menu1__ul__li a{
     font-size: 1.5rem;
     color:#fff;
-    
-}
-.menu1__ul__li i{
-    font-size: 1.5rem;
-    color:#fff;
+    margin: 0px 30px 0px 30px ;
+    padding: 14px 20px 14px 20px ;
+    background-color: #3636367e;
+    border-radius: 50%;
     
 }
 .menu1__ul__li a :hover{

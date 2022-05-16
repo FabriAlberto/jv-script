@@ -5,7 +5,7 @@ ya que si no hay ninguno me linkea al login y si aun no han cerrado sesion
 seguiria en el wallet */
 
 /* CON OPERADOR Y */
-!localStorage.getItem("UsuarioIngresado") && window.location.replace("http://127.0.0.1:5500/index.html");
+!localStorage.getItem("UsuarioIngresado") && window.location.replace("../index.html");
 
 class NuevaActividad {
     constructor(accion, receptor, dinero) {
