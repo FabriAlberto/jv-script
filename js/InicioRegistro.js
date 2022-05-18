@@ -85,15 +85,14 @@ comprobar();
 ///////////////REGISTAR USUARIO NUEVO////////////////////////////////////////////
 
 let btnRegistro = document.querySelector("#submitReg");
-btnRegistro.addEventListener('click', AgregarUsuario);
+btnRegistro.addEventListener('click', registrar)
 
 
-function AgregarUsuario(){
+function AgregarUsuario(NuevoUsuario){
 /* recupera el array del storage */
      let recuperado=JSON.parse(localStorage.getItem("Usuarios"))
-/* guarda en una variable los datos que me retorna la funcion */
-    let NuevoUsuario = registrar()
-/* agrega los datos que me devuelve registrar() a lo que recupere del storage */
+
+/* agrega los datos que  registrar()  me manda por parametro a lo que recupere del storage */
     recuperado.push(NuevoUsuario)
 /* subo todo el array con un nuevo objeto(new user) al storage */
     localStorage.setItem("Usuarios",JSON.stringify(recuperado));
@@ -107,20 +106,25 @@ function AgregarUsuario(){
 
 
 
-function registrar() {
+function registrar(){
     
 
      const nombreReg=document.querySelector("#nombreReg").value
      const apellidoReg=document.querySelector("#apellidoReg").value
      const correoReg=document.querySelector("#correoReg").value
      const contraseñaReg=document.querySelector("#contraseñaReg").value
-    
      
-    return new NuevoUsuario(nombreReg, apellidoReg, correoReg, contraseñaReg,15000,[],[]);
+     if(nombreReg=="" || apellidoReg=="" || correoReg=="" || contraseñaReg==""){
+    
+        error("PORFAVOR COMPLETE TODOS LOS DATOS!🙏")     
+     }
+     else{
 
+        let newUsuario= new NuevoUsuario(nombreReg, apellidoReg, correoReg, contraseñaReg,15000,[],[]);
+        AgregarUsuario(newUsuario)
+     }
+     
 }
-
-
 
 //evento para cambiar de card de incio de sesion a la de registro
 const btnIng=document.querySelector("#BtnIng")
@@ -162,7 +166,7 @@ function iniciarSesion() {
             let ingresoUsuario= new UsuarioIngresado(nombreRegistrado.nombre,nombreRegistrado.apellido,nombreRegistrado.saldo)
             localStorage.setItem("UsuarioIngresado", JSON.stringify(ingresoUsuario));
             window.location.replace("./paginas/billetera.html");
-            console.log(nombre);
+            
              
         }
         else {

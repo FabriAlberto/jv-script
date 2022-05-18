@@ -33,7 +33,6 @@ function buscarSaldo() {
     let Usuarios = recuperarU();
     let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
   /*   let Usuario=modificarUsuario(); */
-    console.log(Users.saldo)
     return Users.saldo
 }
 
@@ -149,8 +148,6 @@ function dolar(){
 }
 
 function mostrarDolar(obj){
-    
-     console.log(obj.blue.value_buy);
 
      let dol=document.querySelector(".cotizacion__dolar")
      
@@ -177,7 +174,7 @@ function mostrarDolar(obj){
        
      </tbody>
    </table> `
-
+ 
 }
 
 

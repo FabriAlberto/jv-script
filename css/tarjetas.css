@@ -105,14 +105,11 @@ a {
 	z-index: 2;
 }
 
-.tarjeta.active {
-	transform: rotateY(180deg);
-}
 
 .tarjeta > div {
 	padding: 30px;
 	border-radius: 15px;
-	min-height: 315px;
+	
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -125,7 +122,9 @@ a {
 	width: 100%;
 	background: url(../imagenes/textura-madera-en-negro_2560x1600_xtrafondos.com.jpg);
 	background-size: cover;
+	height: 315px;
 }
+
 
 .delantera .logo-marca {
 	text-align: right;
@@ -299,6 +298,9 @@ a {
 }
 /* Menu1////////////////////////////// */
 /* Menu1////////////////////////////// */
+ul{
+	padding-left: 0;
+}
 .menu1{
     background-color: #1e1e1e;
     position: fixed;
@@ -342,4 +344,93 @@ a {
     color:#7A63FF;
     
 }
+@media only screen and (max-width: 900px){
+.contenedor__tarjetas {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items: center;
+	margin: 0px;
+	margin-top: 40px;
 
+}
+
+.misTarjetas{
+
+	flex-direction: column;
+}
+}
+
+@media only screen and (max-width: 576px){
+
+	.header__nav__ul__img2{
+		display: none;
+	}
+	.header__nav__ul__li{
+		font-size: 1rem;
+	}
+	.header__nav__ul__img{
+		width: 80px;
+		margin-left: none;
+	}
+	.header__nav__ul button{
+		margin-right: 5px;
+		width: 90px;
+		font-size: 12px;
+	}
+     .contenedor{
+		 width: 100%;
+		 padding: 3px;
+	 }
+	.tarjeta{
+		width: 95%;
+		height: 100%;
+		object-fit: none;
+		
+	}
+	.delantera{
+		max-height: 240px;
+		padding: 0px;
+	}
+	.delantera .logo-marca {
+		height: 30px;
+	
+	}
+
+	
+	
+	.delantera .grupo .numero,
+.delantera .grupo .nombre,
+.delantera .grupo .expiracion {
+	
+	font-size: 15px;
+
+}
+.delantera .grupo .label {
+	font-size: 12px;
+	margin-bottom: 3px;
+}
+.delantera .chip {
+
+	max-width: 30px;
+
+}
+.delantera .logo-marca img {
+	object-fit: contain	;
+	max-width: 50px;
+}
+.tarjeta > div {
+	padding: 15px 30px;
+
+}
+.btnBorrarTarjeta{
+	margin-left: 200px;
+}
+
+.formulario-tarjeta{
+	margin-top: 0px;
+	transform: scale(.8);
+}
+
+}

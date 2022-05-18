@@ -124,7 +124,7 @@ function agregarDeposito() {
     if (!dineroDeposito) {
     error("Ingrese el dinero que desea agregar a su cuenta 🙏") }
     else{
-    mostrarDeposito(dineroDeposito);
+    let mensaje=mostrarDeposito(dineroDeposito);
     sweetAlerts(mensaje);
     }
    

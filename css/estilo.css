@@ -100,15 +100,77 @@ a{
      background-color: #081427;
      outline: none;
 }
+.form2__cont__btn{
+   
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #101010;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+}
+.form2__cont__btn:hover,.form2__cont__btn :active{
+    transform: scale(.97);
+    background-color: #081427;
+    outline: none;
+}
 
 
-
-
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 750px) {
 
 
     .form{
-    width: 100%;
+        height: 75%;
+    width: 75%;
+    background-color: #7a63ff;
+    box-shadow: 2px 2px 10px 0px #7A63FF;
 }
+    main
+    {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-image: none;
+        background-color: #101010;
+    }
+    .Ing{
+        height: 100vh;
+    }
+
+    .cont {
+        flex-direction: column-reverse;
+    }
+   
+    .tit__h1{
+        color: #fff;
+    }
+    .p__h1{
+        color: #fff;
+    }
+    .form2__cont__p{
+        color: #9991BB;
+    }
+ .h2__registrarme{
+     margin-top: 50px;
+ }
+ .form2__cont__btn{
+     background-color: #7a63ff;
+ }
+ .form2__cont__btn:hover,.form2__cont__btn :active{
+     background-color: #7A63FF;
+ }
+ .form__inicio__input{
+
+     border-bottom: 1px solid #5c5c5c;
+ }
+ input::placeholder { 
+     color: #e2e2e2;
+     }   
     
+     .form__inicio__input:focus{
+         background: none;
+        border-bottom: 1px solid #000;
+        outline: none;
+    }
 }

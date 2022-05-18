@@ -21,13 +21,31 @@ const btnAbrirFormulario = document.querySelector("#btn-abrir-formulario"),
     misTarjetas = document.querySelector(".misTarjetas")
 
 
-/* funcion para comprobar si hay tarjetas agregadas  */
-/* let Tarjetas=[];
-function comprobarTarj() {
-    let comprobAct = JSON.parse(localStorage.getItem("TARJETAS")) || localStorage.setItem("TARJETAS", JSON.stringify(Tarjetas))
-    console.log(comprobAct);
+function error(p) {
+
+
+    Toastify({
+
+        text: `${p}`,
+
+        duration: 1500,
+        position: "center",
+        gravity: "bottom",
+        style: {
+
+            background: `#ffffff85`,
+            color: `#000`,
+            fontSize: `1rem`,
+            boxShadow: "none",
+
+        }
+
+
+    }).showToast();
+
+
 }
-comprobarTarj(); */
+
 
 /* funcion que recupera obj Usuario ingresado del localstorage */
 function recuperarUi() {
@@ -38,57 +56,50 @@ function recuperarUi() {
 function recuperarU() {
     return JSON.parse(localStorage.getItem("Usuarios"))
 }
-/* function modificarUsuario(){
-    let UsuarioIngresado = recuperarUi();
-    let Usuarios = recuperarU();
-    let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
- 
-    return Users;
-}
-console.log(modificarUsuario().Tarjeta); */
+
 class NuevaTarjeta {
-    constructor(nombre, numDeTarj, expiracion, contraseña) {
+    constructor(nombre, numDeTarj, mes, año, contraseña) {
         this.nombre = nombre,
             this.numDeTarj = numDeTarj,
-            this.expiracion = expiracion,
+            this.mes = mes,
+            this.año = año,
             this.contraseña = contraseña
     }
 }
 
 
-
-
-/* BOTON PARA BAJAR EL FORMULARIO DE LA TARJETA */
-/* btnAbrirFormulario.addEventListener('click', () => {
-    btnAbrirFormulario.classList.toggle('active');
-    formulario.classList.toggle('active');
-    contenedor.classList.toggle('contenedor_active')
-});
- */
-/* FUNCTION PARA AGREGAR TARJETA AL LOCALSTORAGE */
-
 btnEnviar.addEventListener('click', agregarTarjeta)
-
-
 
 function agregarTarjeta() {
 
-    let tarjnew = new NuevaTarjeta(nombreTarjeta.value, numTarjeta.value, (mes.value, año.value), contraseña.value);
-    /*  let recupera = JSON.parse(localStorage.getItem("TARJETAS"))
-     console.log(recupera)
-      recupera.push(tarjnew);
-     localStorage.setItem("TARJETAS", JSON.stringify(recupera)); */
+    let nombre = nombreTarjeta.value
+    let numero = numTarjeta.value
+    let mesTarjeta = mes.value
+    let añoTarjeta = año.value
+    let contraseñaTarj = contraseña.value
 
-    let UsuarioIngresado = recuperarUi();
-    let Usuarios = recuperarU();
-    let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
-    /* let Users=modificarUsuario() */
-    let tarjetaPush = Users.Tarjeta;
-    tarjetaPush.push(tarjnew);
-    localStorage.setItem("Usuarios", JSON.stringify(Usuarios));
-    mostrarTarjeta();
+    if (validarTarjeta(nombre, numero, mesTarjeta, añoTarjeta, contraseñaTarj)) {
+        let tarjnew = new NuevaTarjeta(nombreTarjeta.value, numTarjeta.value, mes.value, año.value, contraseña.value);
+
+        let UsuarioIngresado = recuperarUi();
+        let Usuarios = recuperarU();
+        let Users = Usuarios.find((cuenta) => cuenta.nombre == UsuarioIngresado.nombre && cuenta.apellido == UsuarioIngresado.apellido)
+        /* let Users=modificarUsuario() */
+        let tarjetaPush = Users.Tarjeta;
+        tarjetaPush.push(tarjnew);
+        localStorage.setItem("Usuarios", JSON.stringify(Usuarios));
+        window.location.assign(href="Tarjetas.html")
+        mostrarTarjeta();
+    }
+    else {
+        error("PORFAVOR COMPLETE TODOS LOS DATOS!🙏")
+    }
 }
-
+function validarTarjeta(nombre, numero, mes, año, contraseña) {
+    let ret = (nombre == "" || numero == "" || mes == "" || año == "" || contraseña == "") ? false : true;
+    console.log(ret)
+    return ret;
+}
 
 
 
@@ -96,11 +107,11 @@ function agregarTarjeta() {
 numTarjeta.addEventListener('keyup', (e) => {
     let valorInput = e.target.value;
     numTarjeta.value = valorInput
-        /* Eliminamos espacios en blanco */
+        /* Eliminamos espacios */
         .replace(/\s/g, '')
-        /* Eliminar las letras */
+        /* Eliminar letras */
         .replace(/\D/g, '')
-        /* Ponemos espacio cada cuatro numeros */
+        /*espacio cada cuatro numeros */
         .replace(/([0-9]{4})/g, '$1 ')
         /* Elimina el ultimo espaciado */
         .trim();
@@ -187,7 +198,7 @@ function pintarTarjeta(tarjetaPush) {
 
                   <div class="grupo" id="expiracion">
                       <p class="label">Expiracion</p>
-                      <p class="expiracion"><span class="mes">MM</span> / <span class="año">${tarj.expiracion}</span></p>
+                      <p class="expiracion"><span class="mes">${tarj.mes}</span> / <span class="año">${tarj.año}</span></p>
                   </div>
               </div>
           </div>
