@@ -49,6 +49,9 @@ h2{
    margin-top: 100px;
    font-size: 2rem;
 }
+.h2__iniciar{
+    margin-top:0px;
+}
 a{
     display: block;
     color: rgb(148, 148, 148);
@@ -68,6 +71,7 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center ;
+      width: 100%;
 }
 .form__inicio__input{
  width: 70%;
@@ -95,11 +99,43 @@ a{
     border: none;
    
 }
+.form__cont__inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .form__inicio__submit:hover,.form__inicio__submit :active{
      transform: scale(.97);
      background-color: #081427;
      outline: none;
 }
+.form2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.form2 div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form2__cont__p{
+    text-align: center;
+    margin: 10px 0px;
+
+}
+.p__h1{
+    font-weight: bold;
+}
+.tit__h1{
+    font-size: 2rem;
+    color: #fff;
+    
+
+}
+
 .form2__cont__btn{
    
     width: 200px;
@@ -117,14 +153,18 @@ a{
 }
 
 
+
 @media only screen and (max-width: 750px) {
 
 
     .form{
-        height: 75%;
+        height: 70%;
     width: 75%;
     background-color: #7a63ff;
     box-shadow: 2px 2px 10px 0px #7A63FF;
+}
+.form__inicio{
+    padding: 0;
 }
     main
     {
@@ -154,6 +194,7 @@ a{
  .h2__registrarme{
      margin-top: 50px;
  }
+
  .form2__cont__btn{
      background-color: #7a63ff;
  }
@@ -173,4 +214,5 @@ a{
         border-bottom: 1px solid #000;
         outline: none;
     }
+   
 }

@@ -100,7 +100,10 @@ function AgregarUsuario(NuevoUsuario){
     
     login.classList.remove( 'active')
     regist.classList.remove( 'active')
-    window.location.replace('./index.html')
+    
+    setTimeout (function redirigirIndex(){
+        window.location.replace("./index.html")
+    },2000)
     
 }
 

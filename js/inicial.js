@@ -90,7 +90,7 @@ actividadesStorage();
 function sweetAlerts(a){
 
     Swal.fire({
-        duration:1500,
+        duration:3000,
         icon:`success`,
         title: a,
         background:'#593eec',
@@ -130,12 +130,13 @@ function error(p){
 let btnCerrarsesion = document.querySelector("#btnCerrarSesion");
 btnCerrarsesion.addEventListener('click', () => {
     sweetAlerts("Gracias por usar nuestros servicios ;)")
-    window.location.replace("../index.html")
-
 
     localStorage.removeItem("UsuarioIngresado")/* esto remueve el objeto donde almaceno nombre
     apellido,saldo y tambien me sirve para decirle al navegador que ya no hay una cuenta ingresada
     en el wallet y puede ingresar otra cuenta */
+    setTimeout (function redirigirIndex(){
+        window.location.replace("../index.html")
+    },2000)
 });
 
 
@@ -148,9 +149,8 @@ function dolar(){
 }
 
 function mostrarDolar(obj){
-
-     let dol=document.querySelector(".cotizacion__dolar")
      
+     let dol=document.querySelector(".cotizacion__dolar")
      dol.innerHTML=` <table class="table table-dark ">
      <thead>
        <tr>
